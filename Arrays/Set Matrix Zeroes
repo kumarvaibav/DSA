@@ -1,0 +1,52 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+
+    //Brute Approach
+
+    //creating the two ArrayList for storing the index of row, column of 0
+     ArrayList<Integer>markRow=new ArrayList<Integer>();
+     ArrayList<Integer>markCol=new ArrayList<Integer>();
+
+    // finding the zero in the matrix and adding into the arrayList as for row ,column
+       for(int  i=0;i<matrix.length;i++)
+       {
+        for(int j=0;j<matrix[i].length;j++)
+        {
+             if(matrix[i][j]==0)
+             {
+               markRow.add(i);
+               markCol.add(j);
+             }
+        }
+       }
+
+    //  set zero in the row
+       for(int i=0;i<markRow.size();i++)
+       {
+           int indexRow=markRow.get(i);
+
+           for(int j=0;j<matrix[indexRow].length;j++)
+           {
+            if(matrix[indexRow][j]!=0)
+            {
+               matrix[indexRow][j]=0; 
+            }
+           }
+       }
+
+
+    //   set zero in the Column
+    for(int i=0;i<markCol.size();i++)
+    {
+        int indexCol=markCol.get(i);
+        for(int j=0;j<matrix.length;j++)
+        {
+            if(matrix[j][indexCol]!=0)
+            {
+                matrix[j][indexCol]=0;
+            }
+        }
+    }
+
+    }
+}
