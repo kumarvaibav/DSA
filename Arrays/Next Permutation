@@ -1,0 +1,55 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+
+        // checking constraints
+        if(nums.length==0||nums==null ||nums.length==1)return;
+
+         int n=nums.length;
+         int k=n-2;
+        // finding k
+        for(int i=n-1;i>0;i--)
+        {
+            if(nums[i]<=nums[i-1]){
+                k--;
+            }
+            else{
+                break;
+            }
+        }
+
+        // checking if k==-1
+        if(k==-1)
+        {
+            reverse(nums,0,n-1);
+            return;
+        }
+
+        // else replace k with next greater element
+       for(int i=n-1;i>k;i--)
+       {
+        if(nums[i]>nums[k])
+        {
+            int temp=nums[i];
+            nums[i]=nums[k];
+            nums[k]=temp; 
+            break;
+        }
+       }
+
+    //    now reverse the element after k+1 to n-1
+    reverse(nums,k+1,n-1);
+
+
+    }
+     void  reverse(int[] n,int start,int end)
+    {
+          while(start<end)
+          {
+            int temp=n[start];
+            n[start]=n[end];
+            n[end]=temp;
+            start++;
+            end--;
+          }
+    }
+}
