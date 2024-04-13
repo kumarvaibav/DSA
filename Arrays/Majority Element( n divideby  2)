@@ -5,7 +5,7 @@ class Solution {
         /*	HashMap<Integer,Integer>map=new HashMap<>();
 	for(int i:a)
 	{
-	    map.put(i,map.getOrDefault(i,0)+1);
+	    map.put(i,map.getOrDefault(i,0)+1); 
 	}
 int	 max=0,value=0;
      for(Map.Entry<Integer,Integer> i:map.entrySet())
@@ -19,9 +19,10 @@ int	 max=0,value=0;
      }
      return value;*/
 
-     //2nd method with O(1) space
 
-     //this algorithm is called Moore's Voting Algorithm'
+     //---------2nd method with O(1) space---------------
+
+     //---------------------------this algorithm is called Moore's Voting Algorithm'------------------------------------------------
      int rep=0,count=0;
      for(int i=1;i<a.length;i++)
      {
@@ -55,5 +56,9 @@ int	 max=0,value=0;
      {
          return -1;
      }
+
+
+
+//-----------------------------------------------------Brute Approach------------------------------------------
     }
 }
