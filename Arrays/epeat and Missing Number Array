@@ -1,0 +1,33 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] A) {
+        
+        int i=0;
+        int n=A.length;
+        while(i<n)
+        {
+            int check=A[i]-1;
+            if(A[i]!=A[check])
+            {
+                int temp=A[i];
+                A[i]=A[check];
+                A[check]=temp;
+            }
+            else{
+                i++;
+            }
+        }
+        int[] temp=new int[2];
+        for(i=0;i<n;i++)
+        {
+            if(i+1!=A[i])
+            {
+                temp[0]=A[i];
+                temp[1]=i+1;
+            }
+        }
+        
+        return temp;       
+    }
+    
+}
