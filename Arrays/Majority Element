@@ -1,0 +1,59 @@
+class Solution {
+    public int majorityElement(int[] a) {
+
+        //1st method witn O(n) space
+        /*	HashMap<Integer,Integer>map=new HashMap<>();
+	for(int i:a)
+	{
+	    map.put(i,map.getOrDefault(i,0)+1);
+	}
+int	 max=0,value=0;
+     for(Map.Entry<Integer,Integer> i:map.entrySet())
+     {
+         max=Math.max(max,i.getValue());
+         if(max>a.length/2 && i.getValue()==max)
+         {
+             value=(i.getKey());
+            
+         }
+     }
+     return value;*/
+
+     //2nd method with O(1) space
+
+     //this algorithm is called Moore's Voting Algorithm'
+     int rep=0,count=0;
+     for(int i=1;i<a.length;i++)
+     {
+         if(a[rep]==a[i])
+         {
+             count++;
+         }
+         else 
+         {
+             count--;
+         }
+         if(count==0)
+         {
+             count=1;
+             rep=i;
+         }
+     }
+     count=0;
+     for(int i=0;i<a.length;i++)
+     {
+         if(a[rep]==a[i])
+         {
+             count++;
+         }
+     }
+     if(count>a.length/2)
+     {
+         return a[rep];
+     }
+     else 
+     {
+         return -1;
+     }
+    }
+}
