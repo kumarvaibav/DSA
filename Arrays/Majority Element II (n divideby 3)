@@ -1,0 +1,136 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+
+        // -----------------------Brute Approach----------------------------
+       List<Integer>list=new ArrayList<>();
+       int count=0;
+       int n=nums.length;
+       if(n<=2)
+       {
+        for(int i=0;i<n;i++)
+        {
+         if(!list.contains(nums[i]))
+         {
+            list.add(nums[i]);
+         }
+        }
+         return list;
+       }
+
+       for(int i=0;i<n-1;i++)
+       {
+        count=0;
+        for(int j=i;j<n;j++)
+        {
+            if(nums[j]==nums[i])
+            {
+                count++;
+            }
+        }
+        if(count>n/3 && !list.contains(nums[i]))
+        {
+            list.add(nums[i]);
+        }
+       }
+       return list;
+       
+       
+       /* //optimal approach
+
+      List<Integer>list=new ArrayList<>();
+        if(nums.length==1)
+        {
+            list.add(nums[0]);
+            return list;
+        }
+        else{
+            int count1=0,count2=0;
+            int ele1=Integer.MIN_VALUE;
+            int ele2=Integer.MAX_VALUE;
+
+            for(int i=0;i<nums.length;i++)
+            {
+                if(count1==0 && ele2!=nums[i])
+                {
+                    count1=1;
+                    ele1=nums[i];
+                }
+                else if(count2==0 && ele1!=nums[i])
+                {
+                    count2=1;
+                    ele2=nums[i];
+                }
+                else if(ele1==nums[i])
+                {
+                    count1++;
+                }
+                else if(ele2==nums[i])
+                {
+                    count2++;
+                }
+                else{
+                    count1--;
+                    count2--;
+                }
+            }
+            count1=count2=0;
+            for(int i=0;i<nums.length;i++)
+            {
+                if(nums[i]==ele1)
+                {
+                    count1++;
+                }
+                else if(nums[i]==ele2)
+                {
+                    count2++;
+                }
+            }
+            int n=nums.length;
+            if(count1>(n/3))
+            {
+                list.add(ele1);
+            }
+            if(count2>(n/3))
+            {
+                list.add(ele2);
+            }
+        }
+       return list;
+         
+*/
+
+//---------------------------------//
+    //    List<Integer>list=new ArrayList<>();  //better approach
+    //    if(nums.length==1)
+    //    {
+    //       list.add(nums[0]);
+    //       return list;
+    //    } 
+    //    else{
+    //        Arrays.sort(nums);
+    //        int count=1;
+    //        int ele=nums[0];
+    //        int n=nums.length;
+    //        for(int i=1;i<n;i++)
+    //        {
+    //            if(nums[i]==ele)
+    //            {
+    //                count++;
+    //            }
+    //            else{
+    //                if(count>(n/3) && !list.contains(ele))
+    //                {
+    //                    list.add(ele);
+    //                }
+    //                ele=nums[i];
+    //                count=1;
+    //            }
+    //        }
+    //        if(count>(n/3) && !list.contains(ele))   //in case of else statement for not running
+    //        {
+    //            list.add(ele);
+    //        }
+    //        return list;
+    //    }
+    }
+}
