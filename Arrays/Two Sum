@@ -1,0 +1,66 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+
+        //-------------brute approach----------
+
+      /*  for(int i=0;i<nums.length-1;i++)
+        {
+            for(int j=i+1;j<nums.length;j++)
+            {
+            if(nums[i]+nums[j]==target)
+            {
+                return new int[]{i,j};
+            }
+            }
+        }
+        return new int[] {};
+        */
+
+
+//------------------better appraoch------------------
+/*
+
+        HashMap<Integer,Integer>map=new HashMap<>();
+        int check=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            check=target-nums[i];
+            if(map.containsKey(check))
+            {
+                return new int [] {map.get(check),i};
+            }
+            map.put(nums[i],i);
+        }
+        return new int [] {};
+        
+*/
+
+// ---------------------Optimal Approach------------------------
+
+            // ========2 pointer approach===============
+ 
+  // Create a copy of nums to retain original indices
+        Integer[] originalIndices = new Integer[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            originalIndices[i] = i;
+        }
+
+        // Sort nums while keeping track of the original indices
+        Arrays.sort(originalIndices, Comparator.comparingInt(index -> nums[index]));
+
+        // Use two pointers approach on sorted nums
+        int left = 0;
+        int right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[originalIndices[left]] + nums[originalIndices[right]];
+            if (sum == target) {
+                return new int[]{originalIndices[left], originalIndices[right]};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return new int[]{};
+    }
+}
