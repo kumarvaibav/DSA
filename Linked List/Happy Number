@@ -1,0 +1,48 @@
+class Solution {
+    public boolean isHappy(int n) {
+
+        //------------------------------------Brute Approach----------------------------------
+
+        /*
+    if(n==1 ||n==7) return true;
+    if(n>1 && n<10) return false;
+    while(n>9)
+     {
+        int sum=0;
+        int m=n;
+        while(m!=0)
+        {
+            int rem=m%10;
+            sum+=rem*rem;
+            m/=10;
+        }
+        if(sum==1 || sum==7) return true;
+        n=sum;
+
+     }
+     return false;
+         */
+
+         //------------------------------optimal Approach---------------------------------
+         //linkedList Cycle Theorem
+        int slow=n;
+        int fast=n;
+        do{
+            slow=square(slow);
+            fast=square(square(fast));
+        }while(slow!=fast);
+        if(fast==1) return true;
+        return false;
+    }
+        public int square(int n)
+        {
+           int sum=0;
+           while(n!=0)
+           {
+            int remainder=n%10;
+            sum+=remainder*remainder;
+            n/=10;
+           }
+           return sum;
+        } 
+     }
