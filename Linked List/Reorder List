@@ -1,0 +1,81 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+    
+         //steps to sove 1. find midddle node
+         //2. reverse the middle
+         //3. run loop head and from reverse node and swap using temp node   
+
+
+        if(head==null || head.next==null)
+        {
+            return;
+        }
+
+        ListNode mid=middleNode(head);
+        ListNode reverseNode=reverseList(mid);
+        ListNode storehead=head;
+
+        while(head!=null && reverseNode!=null)
+        {
+            ListNode temp=head.next;
+            head.next=reverseNode;
+            head=temp;
+
+            temp=reverseNode.next;
+            reverseNode.next=head;
+            reverseNode=temp;
+        }
+        if(head!=null)
+        {
+            head.next=null;
+        }
+        head=storehead;
+        return;
+    }
+     public ListNode middleNode(ListNode head)
+    {
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    public ListNode reverseList(ListNode head)
+    {
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+
+        ListNode Past=null;
+        ListNode Present=head;
+        ListNode Future=head.next;
+
+        while(Present!=null)
+        {
+            Present.next=Past;
+            Past=Present;
+            Present=Future;
+            if(Future!=null)
+            {
+                Future=Future.next;
+            }
+        }
+        head=Past;
+        return head;
+    }
+}
